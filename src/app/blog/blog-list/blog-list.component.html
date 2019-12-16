@@ -1,0 +1,32 @@
+<button class="btn btn-info" type="button" routerLink="newBlog">ADD</button>
+<div class="card my-5">
+  <div class="col-form-label" style="text-shadow: blue 2px 2px 6px; font-weight: bolder; margin-left: 15px">
+    Blog List
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of blogList | paginate:{itemsPerPage: count, currentPage: p} ">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{item.body}}</td>
+        <td><button class="btn btn-info" type="button" (click)="goToEditBlog(item)">Edit</button></td>
+        <td><button class="btn btn-danger" type="button" (click)="deleteBlog(item)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <pagination-controls (pageChange)="p= $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
